@@ -5,7 +5,7 @@ import com.example.chat.domain.model.User
 
 interface UsersService {
 
-    suspend fun getAllUsers(): List<User>
+    suspend fun getAllUsers(username: String): List<User>
 
     suspend fun setUser(username: String)
 
@@ -15,7 +15,7 @@ interface UsersService {
     }
 
     sealed class Endpoints(val url: String) {
-        object GetAllUsers: Endpoints("$BASE_URL/users")
+        object GetAllUsers: Endpoints("$BASE_URL/users?username=")
         object SetUser: Endpoints("$BASE_URL/insert_user?username=")
     }
 }

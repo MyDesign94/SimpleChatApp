@@ -11,9 +11,9 @@ import io.ktor.client.request.*
 class UsersServiceImpl(
     private val client: HttpClient
 ): UsersService {
-    override suspend fun getAllUsers(): List<User> {
+    override suspend fun getAllUsers(username: String): List<User> {
         return try {
-            client.get<List<UserDto>>(UsersService.Endpoints.GetAllUsers.url)
+            client.get<List<UserDto>>(UsersService.Endpoints.GetAllUsers.url + username)
                 .map { it.toUser() }
         } catch (e: Exception) {
 

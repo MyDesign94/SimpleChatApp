@@ -25,7 +25,8 @@ import com.example.chat.ui.theme.SimpleChatAppTheme
 
 @Composable
 fun UserScreen(
-    viewModel: UsersViewModel = hiltViewModel()
+    viewModel: UsersViewModel = hiltViewModel(),
+    username: String
 ) {
     val userList = viewModel.userList.value
 
@@ -33,7 +34,7 @@ fun UserScreen(
     DisposableEffect(key1 = lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_START) {
-                viewModel.getAllUsers()
+                viewModel.getAllUsers(username)
             }
         }
         lifecycleOwner.lifecycle.addObserver(observer)

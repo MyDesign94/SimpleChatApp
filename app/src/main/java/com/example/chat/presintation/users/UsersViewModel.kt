@@ -21,9 +21,9 @@ class UsersViewModel @Inject constructor(
     private val _userList = mutableStateOf<List<User>>(emptyList())
     val userList: State<List<User>> = _userList
 
-    fun getAllUsers() {
+    fun getAllUsers(username: String) {
         viewModelScope.launch {
-            val result = usersService.getAllUsers()
+            val result = usersService.getAllUsers(username)
             _userList.value = result
             Log.e("!!!", result.toString())
         }

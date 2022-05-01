@@ -68,8 +68,8 @@ class MainActivity : ComponentActivity() {
                                 }
                             )
                         ) {
-                            val username = it.arguments?.getString("username")
-                            UserScreen()
+                            val username = it.arguments?.getString("username")?: "Guest"
+                            UserScreen(username = username)
                         }
                     }
                 }
