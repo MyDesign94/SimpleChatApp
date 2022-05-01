@@ -21,6 +21,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.chat.presintation.chat.ChatScreen
 import com.example.chat.presintation.username.UsernameScreen
+import com.example.chat.presintation.users.UserScreen
 import com.example.chat.ui.theme.SimpleChatAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,6 +32,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             SimpleChatAppTheme {
                 // A surface container using the 'background' color from the theme
+
+//                UserScreen()
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
@@ -54,6 +57,19 @@ class MainActivity : ComponentActivity() {
                         ) {
                             val username = it.arguments?.getString("username")
                             ChatScreen(username = username)
+                        }
+
+                        composable(
+                            route = "users_screen/{username}",
+                            arguments = listOf(
+                                navArgument(name = "username") {
+                                    type = NavType.StringType
+                                    nullable = true
+                                }
+                            )
+                        ) {
+                            val username = it.arguments?.getString("username")
+                            UserScreen()
                         }
                     }
                 }

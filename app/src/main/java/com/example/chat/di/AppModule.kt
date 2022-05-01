@@ -1,9 +1,6 @@
 package com.example.chat.di
 
-import com.example.chat.data.remote.ChatSocketService
-import com.example.chat.data.remote.ChatSocketServiceImpl
-import com.example.chat.data.remote.MessageService
-import com.example.chat.data.remote.MessageServiceImpl
+import com.example.chat.data.remote.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -42,5 +39,11 @@ class AppModule {
     @Singleton
     fun provideChatSocketService(client: HttpClient): ChatSocketService {
         return ChatSocketServiceImpl(client = client)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUsersService(client: HttpClient): UsersService {
+        return UsersServiceImpl(client = client)
     }
 }
